@@ -509,7 +509,7 @@
       transform: translateY(-3px) scale(1.06) !important;
     }
     @media (max-width: 900px) { .projects-grid, .blog-grid { grid-template-columns: 1fr 1fr; } .fun-grid { grid-template-columns: repeat(2, 1fr); } .hero { flex-direction: column-reverse; text-align: center; } .edu-row { flex-direction: column; } }
-    @media (max-width: 640px) { * { cursor: auto !important; } .custom-cursor { display: none !important; } .nav-links { display: none; } .nav-hamburger { display: flex; } .projects-grid, .blog-grid { grid-template-columns: 1fr; } .fun-grid { grid-template-columns: 1fr; } .hero-portrait { width: 180px; } .detail-nav { font-size: 1.8rem; width: 40px; } .detail-nav.prev { left: 0.5rem; } .detail-nav.next { right: 0.5rem; } .close-detail { top: 1rem; right: 1rem; } .detail-title { font-size: 2rem; } }
+    @media (max-width: 640px) { * { cursor: auto !important; } .custom-cursor { display: none !important; } .nav-links { display: none; } .nav-hamburger { display: flex; } .projects-grid, .blog-grid { grid-template-columns: 1fr; } .fun-grid { grid-template-columns: 1fr; } .hero-portrait { width: 180px; } .detail-nav { font-size: 1.8rem; width: 40px; } .detail-nav.prev { left: 0.5rem; } .detail-nav.next { right: 0.5rem; } .close-detail { top: 1rem; right: 1rem; } .detail-title { font-size: 2rem; } .container { padding-left: 1.25rem; padding-right: 1.25rem; } }
   </style>
 </head>
 <body>
@@ -523,7 +523,7 @@
   <div id="homepage">
     <section class="hero container"><div class="hero-content"><h1 class="hero-name">Hi, I'm <span class="underline-reveal" id="nameUnderline">Ojas Verma</span></h1><div class="hero-tagline">ISO27001 LA · MBA (IT Business Management) · GRC Analyst</div><div class="scroll-indicator"><span>Scroll</span><span class="bounce" id="scrollArrow">↓</span></div></div><div class="hero-image-wrapper"><div class="portrait-scene" id="portraitScene"><div class="portrait-tilt" id="portraitTilt"><img class="hero-portrait" id="heroPortrait" src="" alt="Ojas Verma"><button class="portrait-bubble portrait-bubble-left" id="bubbleLeft" title="Send an email"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.88)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="26" height="26"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></button><button class="portrait-bubble portrait-bubble-right" id="bubbleRight" title="LinkedIn"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.88)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="26" height="26"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></button></div></div></div></section>
 
-    <section id="about" class="container" style="padding: 4rem 0;">
+    <section id="about" class="container" style="padding-top: 4rem; padding-bottom: 4rem;">
       <div class="section-label">ABOUT</div>
       <div class="section-heading">GRC & Security Analyst</div>
       <div class="about-text-custom">
@@ -533,7 +533,7 @@
       </div>
     </section>
 
-    <section id="experience" class="container" style="padding: 4rem 0;">
+    <section id="experience" class="container" style="padding-top: 4rem; padding-bottom: 4rem;">
       <div class="section-label">EXPERIENCE</div>
       <div class="section-heading">Work history</div>
       <div class="timeline">
@@ -560,9 +560,9 @@
       </div>
     </section>
 
-    <section id="projects" class="container" style="padding: 4rem 0;"><div class="section-label">RESEARCH & PROJECTS</div><div class="section-heading">Academic & GRC work</div><div class="projects-grid" id="projectsGrid"></div></section>
+    <section id="projects" class="container" style="padding-top: 4rem; padding-bottom: 4rem;"><div class="section-label">RESEARCH & PROJECTS</div><div class="section-heading">Academic & GRC work</div><div class="projects-grid" id="projectsGrid"></div></section>
 
-    <section id="education" class="container" style="padding: 4rem 0;">
+    <section id="education" class="container" style="padding-top: 4rem; padding-bottom: 4rem;">
       <div class="section-label">EDUCATION</div>
       <div class="section-heading">Degrees</div>
       <div class="edu-row">
@@ -571,7 +571,7 @@
       </div>
     </section>
 
-    <section id="achievements" class="container" style="padding: 4rem 0;">
+    <section id="achievements" class="container" style="padding-top: 4rem; padding-bottom: 4rem;">
       <div class="section-label">CERTIFICATIONS & HONORS</div>
       <div class="section-heading">Recognition</div>
       <div class="achievements-list">
@@ -581,13 +581,13 @@
       </div>
     </section>
 
-    <section id="blog" class="container" style="padding: 4rem 0;">
+    <section id="blog" class="container" style="padding-top: 4rem; padding-bottom: 4rem;">
       <div class="section-label">INSIGHTS & WRITINGS</div>
       <div class="section-heading">Blog</div>
       <div class="blog-grid" id="blogGrid"></div>
     </section>
 
-    <section id="contact" class="container" style="padding: 4rem 0;">
+    <section id="contact" class="container" style="padding-top: 4rem; padding-bottom: 4rem;">
       <div class="section-label">GET IN TOUCH</div>
       <div class="section-heading">Contact Me</div>
       <div class="contact-grid" id="contactGrid"></div>

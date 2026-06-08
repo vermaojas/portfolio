@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Ojas Verma – GRC Analyst & MBA</title>
+  <!-- Google Fonts: Montserrat + Open Sauce -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.cdnfonts.com/css/open-sauce-one" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
+    :root {
+      --bg: #eaeaea;
+      --text-primary: #0f2c33;
+      --text-secondary: #2a4a55;
+      --accent: #d74a49;
+      --primary-deep: #183e4b;
+      --primary-mid: #1b4552;
+      --muted-acc: #456870;
+      --border-light: #cdd5d7;
+      --card-border: #becbce;
+      --nav-bg-blur: rgba(234, 234, 234, 0.92);
+      --card-bg-hover: rgba(215, 74, 73, 0.05);
+      --highlight: #f5e56b;
+      --dropcap-color: var(--primary-deep);
+      --cursor-color: #d74a49;
+    }
+    body.dark {
+      --bg: #121c20;
+      --text-primary: #eef2f0;
+      --text-secondary: #cbd5d1;
+      --accent: #e07a79;
+      --primary-deep: #cbd8dc;
+      --primary-mid: #b7c7cc;
+      --muted-acc: #6e8b8f;
+      --border-light: #2a3e44;
+      --card-border: #2e454b;
+      --nav-bg-blur: rgba(18, 28, 32, 0.92);
+      --card-bg-hover: rgba(224, 122, 121, 0.08);
+      --highlight: #c9b33b;
+      --dropcap-color: #e0e7e5;
+      --cursor-color: #e07a79;
+    }
+    body {
+      background-color: var(--bg);
+      color: var(--text-primary);
+      font-family: 'Open Sauce One', 'Montserrat', sans-serif;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+      transition: background 0.3s, color 0.3s;
+      overflow-x: hidden;
+    }
+    h1, h2, h3, .hero-name, .card-title, .blog-title, .logo, .section-heading, .fun-card-title, .activity-title, .detail-title {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    .section-label, .nav-link, .button, .exp-meta, .blog-date, .project-tech, .achieve-number {
+      font-family: 'Open Sauce One', 'Montserrat', sans-serif;
+      font-weight: 500;
+    }
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 2rem; }
+
+    /* Custom Cursor */
+    .custom-cursor {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 99999;
+      transform: translate(-50%, -50%);
+      transition: width 0.2s ease, height 0.2s ease;
+      will-change: transform, width, height;
+      background: transparent;
+    }
+    #cursorCircle {
+      stroke: var(--cursor-color);
+      stroke-width: 4.5;
+    }
+    .custom-cursor.scroll-active {
+      width: 54px;
+      height: 54px;
+      animation: cursorSpin 0.78s linear infinite;
+    }
+    .custom-cursor.scroll-up {
+      width: 54px;
+      height: 54px;
+      animation: cursorSpinReverse 0.78s linear infinite;
+    }
+    .custom-cursor.scroll-active #cursorCircle,
+    .custom-cursor.scroll-up #cursorCircle {
+      stroke-dasharray: 12 18;
+      stroke-width: 5.5;
+    }
+    @keyframes cursorSpin {
+      from { transform: translate(-50%, -50%) rotate(0deg); }
+      to { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+    @keyframes cursorSpinReverse {
+      from { transform: translate(-50%, -50%) rotate(0deg); }
+      to { transform: translate(-50%, -50%) rotate(-360deg); }
+    }
+    .custom-cursor.hover-active { width: 48px; height: 48px; }
+    .custom-cursor.click-active { animation: cursorPulse 0.25s ease-out forwards; }
+    @keyframes cursorPulse {
+      0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+      50% { transform: translate(-50%, -50%) scale(1.35); opacity: 0.75; }
+      100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+    }
+
+    /* Navigation */
+    .site-header { position: fixed; top: 0; width: 100%; z-index: 100; padding: 1.2rem 2rem; transition: background 0.3s, backdrop-filter 0.3s; }
+    .site-header.scrolled { background: var(--nav-bg-blur); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(24,62,75,0.1); }
+    .nav-inner { max-width: 1280px; margin: 0 auto; display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 1rem; }
+    .logo { font-size: 1.6rem; text-decoration: none; color: var(--primary-deep); transition: color 0.2s; cursor: pointer; font-weight: 800; }
+    .logo:hover { color: var(--accent); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; flex-wrap: wrap; align-items: center; }
+    .nav-link { text-decoration: none; font-weight: 600; font-size: 0.85rem; color: var(--text-secondary); transition: color 0.2s; cursor: pointer; display: inline-block; letter-spacing: 0.3px; }
+    .nav-link:hover, .nav-link.active { color: var(--accent); }
+
+    @keyframes rainbowCycle {
+      0% { color: #ff0000; } 14% { color: #ff7f00; } 28% { color: #ffff00; }
+      42% { color: #00ff00; } 57% { color: #0000ff; } 71% { color: #4b0082; }
+      85% { color: #9400d3; } 100% { color: #ff0000; }
+    }
+    .nav-link.rainbow { animation: rainbowCycle 2s linear infinite; font-weight: 700; }
+    .nav-link.rainbow:hover { animation: rainbowCycle 0.8s linear infinite; filter: brightness(1.1); }
+
+    @keyframes einkFlicker {
+      0%   { color: var(--text-secondary); background: transparent; }
+      10%  { color: var(--bg);            background: var(--text-primary); }
+      22%  { color: var(--text-secondary); background: transparent; }
+      34%  { color: var(--bg);            background: var(--text-primary); }
+      46%  { color: var(--text-secondary); background: transparent; }
+      60%  { color: var(--bg);            background: var(--text-primary); }
+      74%  { color: var(--accent);        background: transparent; }
+      100% { color: var(--accent);        background: transparent; }
+    }
+    .nav-link.flicker-text {
+      animation: einkFlicker 0.42s steps(1, end) forwards;
+      transition: none !important;
+      border-radius: 2px;
+      padding: 1px 3px;
+    }
+
+    .theme-toggle { background: transparent; border: 1px solid var(--border-light); border-radius: 40px; width: 48px; height: 28px; display: flex; align-items: center; justify-content: space-between; padding: 0 6px; cursor: pointer; transition: border 0.2s; }
+    .theme-toggle:hover { border-color: var(--accent); }
+    .theme-toggle svg { width: 16px; height: 16px; stroke: var(--text-secondary); fill: none; stroke-width: 1.8; }
+
+    /* Interstitial Overlay */
+    .interstitial-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--accent);
+      z-index: 10000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transform: translateY(-100%);
+      transition: none;
+      pointer-events: none;
+      visibility: hidden;
+    }
+    .interstitial-overlay.active { transform: translateY(0); pointer-events: all; visibility: visible; transition: transform 0.6s cubic-bezier(0.2, 0.9, 0.4, 1.1); }
+    .interstitial-overlay.exit { transform: translateY(100%); transition: transform 0.6s cubic-bezier(0.4, 0, 0.6, 1); }
+    .interstitial-text {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: clamp(2rem, 8vw, 4rem);
+      color: white;
+      text-align: center;
+      opacity: 0;
+      transform: scale(0.9);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+    .interstitial-overlay.active .interstitial-text { opacity: 1; transform: scale(1); }
+
+    /* Fun Page */
+    .fun-page { min-height: 100vh; padding: 8rem 2rem 4rem; }
+    .fun-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 3rem; }
+    .fun-card {
+      background: transparent;
+      border: 1px solid var(--card-border);
+      padding: 2rem;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      text-align: center;
+    }
+    .fun-card:hover { transform: translateY(-6px); border-color: var(--accent); background: var(--card-bg-hover); }
+    .fun-icon { font-size: 3rem; margin-bottom: 1rem; }
+    .fun-card-title { font-size: 1.5rem; margin-bottom: 0.75rem; color: var(--accent); font-weight: 700; }
+    .fun-card-desc { font-size: 0.9rem; color: var(--text-secondary); }
+
+    /* Activity Detail */
+    .activity-detail-container { max-width: 880px; margin: 6rem auto 4rem; padding: 0 1.5rem; }
+    .activity-header-image { width: 100%; max-height: 480px; object-fit: cover; margin-bottom: 2rem; border-radius: 8px; }
+    .activity-title { font-size: 3.2rem; line-height: 1.2; margin: 1rem 0 0.5rem; color: var(--primary-deep); font-weight: 800; }
+    .activity-meta { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; color: var(--accent); margin-bottom: 2rem; border-bottom: 1px solid var(--border-light); padding-bottom: 1rem; }
+    .activity-body { font-size: 1.1rem; line-height: 1.6; }
+    .back-home-fun { display: inline-block; margin-top: 3rem; color: var(--accent); text-decoration: none; font-weight: 600; border-bottom: 1px solid transparent; transition: 0.2s; cursor: pointer; }
+    .back-home-fun:hover { border-bottom-color: var(--accent); }
+
+    /* Detail View with Navigation */
+    .detail-wrapper {
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      background: var(--bg);
+      overflow-y: auto;
+      visibility: hidden;
+      opacity: 0;
+      transition: visibility 0s 0.3s, opacity 0.3s ease;
+    }
+    .detail-wrapper.visible {
+      visibility: visible;
+      opacity: 1;
+      transition: visibility 0s 0s, opacity 0.3s ease;
+    }
+    .detail-container {
+      max-width: 880px;
+      margin: 4rem auto 4rem;
+      padding: 0 1.5rem;
+      position: relative;
+    }
+    .detail-header-image { width: 100%; max-height: 480px; object-fit: cover; margin-bottom: 2rem; border-radius: 8px; }
+    .detail-title { font-size: 3.2rem; line-height: 1.2; margin: 1rem 0 0.5rem; color: var(--primary-deep); font-weight: 800; }
+    .detail-meta { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; color: var(--accent); margin-bottom: 2rem; border-bottom: 1px solid var(--border-light); padding-bottom: 1rem; font-weight: 500; }
+    .detail-body { font-size: 1.1rem; line-height: 1.6; }
+    .detail-body p { margin-bottom: 1.5rem; }
+    .dropcap:first-letter { font-size: 4.2rem; font-weight: 700; float: left; line-height: 0.8; margin-right: 0.5rem; color: var(--dropcap-color); font-family: 'Montserrat', sans-serif; }
+    .inline-image { width: 100%; margin: 2rem 0; border-radius: 8px; border: 1px solid var(--border-light); }
+
+    .detail-nav {
+      position: fixed;
+      top: 50%;
+      transform: translateY(-50%);
+      background: transparent;
+      border: none;
+      font-size: 2.2rem;
+      cursor: pointer;
+      color: var(--accent);
+      opacity: 0.5;
+      transition: opacity 0.2s, transform 0.2s;
+      z-index: 210;
+      padding: 1rem;
+      font-weight: 300;
+      width: 60px;
+      text-align: center;
+    }
+    .detail-nav:hover { opacity: 1; transform: translateY(-50%) scale(1.1); }
+    .detail-nav.prev { left: 1.5rem; }
+    .detail-nav.next { right: 1.5rem; }
+    .close-detail {
+      position: fixed;
+      top: 1.8rem;
+      right: 2rem;
+      background: transparent;
+      border: none;
+      font-size: 2rem;
+      cursor: pointer;
+      color: var(--text-secondary);
+      z-index: 210;
+      transition: color 0.2s, transform 0.2s;
+      line-height: 1;
+    }
+    .close-detail:hover { color: var(--accent); transform: scale(1.1); }
+
+    .detail-fade { transition: opacity 0.25s ease; opacity: 1; }
+    .detail-fade.fade-out { opacity: 0; }
+
+    /* Homepage sections */
+    .projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+    .project-card { background: transparent; border-left: 3px solid var(--accent); padding: 1.5rem 1.2rem; transition: transform 0.2s, background 0.2s; cursor: pointer; }
+    .project-card:hover { transform: translateY(-6px); border-left-width: 5px; background: var(--card-bg-hover); }
+    .project-title { font-size: 1.5rem; margin-bottom: 0.5rem; color: var(--primary-deep); font-weight: 700; }
+    .project-tech { font-size: 0.7rem; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; font-weight: 600; }
+    .project-desc { font-size: 0.9rem; color: var(--text-secondary); }
+
+    /* Blog Section */
+    .blog-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; margin-top: 1rem; }
+    .blog-card { position: relative; overflow: hidden; height: 320px; border-radius: 8px; cursor: pointer; border: none; padding: 0; background: var(--border-light); }
+    .blog-card img { width: 100%; height: 100%; object-fit: cover; transition: filter 0.45s ease, transform 0.5s ease; display: block; }
+    .blog-card:hover img { filter: blur(6px); transform: scale(1.07); }
+    .blog-card-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(15,44,51,0.9) 0%, rgba(15,44,51,0.35) 55%, transparent 100%); transition: background 0.35s ease; }
+    .blog-card:hover .blog-card-overlay { background: linear-gradient(to top, rgba(15,44,51,0.96) 0%, rgba(15,44,51,0.72) 55%, rgba(15,44,51,0.38) 100%); }
+    .blog-card-info { position: absolute; bottom: 0; left: 0; right: 0; padding: 1.6rem; transition: transform 0.3s ease; }
+    .blog-card:hover .blog-card-info { transform: translateY(-5px); }
+    .blog-title { font-size: 1rem; font-weight: 700; color: white; margin-bottom: 0.35rem; line-height: 1.35; font-family: 'Montserrat', sans-serif; letter-spacing: -0.01em; }
+    .blog-date { font-size: 0.62rem; text-transform: uppercase; color: rgba(255,255,255,0.55); letter-spacing: 1.2px; }
+    /* Blog detail content styles */
+    .blog-stat-row { display: flex; gap: 1rem; margin: 1.5rem 0 2rem; flex-wrap: wrap; }
+    .blog-stat-box { background: var(--card-bg-hover); border: 1px solid var(--card-border); padding: 12px 16px; flex: 1; min-width: 110px; border-radius: 4px; }
+    .blog-stat-val { font-family: 'Montserrat', sans-serif; font-size: 1.5rem; font-weight: 700; color: var(--accent); line-height: 1; margin-bottom: 5px; }
+    .blog-stat-label { font-size: 0.68rem; color: var(--muted-acc); text-transform: uppercase; letter-spacing: 0.5px; }
+    .blog-pull-quote { margin: 1.75rem 0; padding: 1.25rem 1.5rem; background: var(--card-bg-hover); border-left: 3px solid var(--accent); font-family: 'Montserrat', sans-serif; font-size: 1rem; font-style: italic; line-height: 1.6; color: var(--text-primary); }
+    .blog-section-title { font-family: 'Montserrat', sans-serif; font-size: 1.55rem; font-weight: 700; color: var(--primary-deep); margin: 2rem 0 0.6rem; line-height: 1.3; }
+    .blog-section-kicker { font-size: 0.82rem; letter-spacing: 2.5px; color: var(--accent); text-transform: uppercase; font-weight: 700; margin-top: 2rem; margin-bottom: 0.25rem; }
+
+    /* Contact Section */
+    .contact-grid { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; margin: 2rem 0; }
+    .contact-card { background: transparent; border: 1px solid var(--card-border); border-radius: 12px; width: 96px; height: 96px; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; cursor: pointer; }
+    .contact-card:hover { border-color: var(--accent); transform: translateY(-4px); background: var(--card-bg-hover); }
+    .contact-card svg { width: 38px; height: 38px; stroke: var(--muted-acc); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; transition: stroke 0.2s; }
+    .contact-card:hover svg { stroke: var(--accent); }
+
+    .hero { min-height: 90vh; display: flex; align-items: center; gap: 3rem; flex-wrap: wrap; padding: 6rem 0; }
+    .hero-content { flex: 1.2; }
+    @keyframes portraitFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-14px); }
+    }
+    .hero-image-wrapper { flex: 0.8; display: flex; justify-content: center; animation: portraitFloat 5.5s ease-in-out infinite; }
+    .hero-portrait {
+      max-width: 100%;
+      width: 320px;
+      opacity: 0;
+      transform: scale(0.95);
+      transition: opacity 0.7s ease, transform 0.7s ease, box-shadow 0.7s ease;
+      border-radius: 20px;
+      object-fit: cover;
+    }
+    .hero-portrait.reveal-image {
+      opacity: 1;
+      transform: scale(1);
+      box-shadow:
+        0 0 0 4px rgba(249, 115, 22, 0.18),
+        0 24px 60px rgba(15, 44, 51, 0.22),
+        0 8px 24px rgba(249, 115, 22, 0.14);
+    }
+    body.dark .hero-portrait.reveal-image {
+      box-shadow:
+        0 0 0 4px rgba(249, 115, 22, 0.14),
+        0 24px 60px rgba(0, 0, 0, 0.45),
+        0 8px 24px rgba(249, 115, 22, 0.1);
+    }
+    .hero-name { font-size: clamp(3rem, 8vw, 5rem); color: var(--primary-deep); margin-bottom: 1rem; font-weight: 800; }
+    #nameUnderline { color: #f97316; }
+    .underline-reveal { background-image: linear-gradient(#f97316, #f97316); background-repeat: no-repeat; background-position: 0 100%; background-size: 0% 2px; transition: background-size 0.6s; padding-bottom: 4px; }
+    .hero-tagline { font-size: 1.15rem; color: var(--muted-acc); letter-spacing: 0.3px; }
+    .scroll-indicator { margin-top: 2rem; font-size: 0.8rem; text-transform: uppercase; color: var(--muted-acc); letter-spacing: 1px; }
+    .bounce { animation: bounce 2s infinite; display: inline-block; cursor: pointer; color: var(--accent); }
+    @keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(6px)} }
+    .section-label { font-size: 0.75rem; letter-spacing: 2px; color: var(--accent); margin-bottom: 0.5rem; text-transform: uppercase; font-weight: 700; }
+    .section-heading { font-size: 2.5rem; margin-bottom: 2rem; color: var(--primary-deep); font-weight: 800; }
+    .timeline { position: relative; margin-left: 1rem; }
+    .timeline::before { content: ''; position: absolute; left: 0; top: 0.5rem; bottom: 0; width: 2px; background: var(--border-light); }
+    .exp-item { position: relative; padding-left: 2rem; margin-bottom: 2rem; opacity: 0; transform: translateX(-20px); transition: 0.4s; }
+    .exp-item.visible { opacity: 1; transform: translateX(0); }
+    .exp-title { font-size: 1.3rem; font-weight: 700; color: var(--primary-mid); margin-bottom: 0.2rem; }
+    .exp-title a { color: var(--primary-mid); text-decoration: none; border-bottom: 1px dotted var(--accent); transition: color 0.2s, border-bottom-color 0.2s; }
+    .exp-title a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+    .exp-meta { font-size: 0.8rem; color: var(--muted-acc); text-transform: uppercase; margin-bottom: 0.75rem; letter-spacing: 0.5px; }
+    .exp-desc-list { padding-left: 1.2rem; margin-top: 0.5rem; }
+    .exp-desc-list li { font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 0.5rem; line-height: 1.45; }
+    .about-text-custom { font-family: 'Open Sauce One', sans-serif; font-size: 1.05rem; line-height: 1.6; }
+    .about-text-custom p { margin-bottom: 1rem; }
+    .about-text-custom a { color: var(--accent); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 0.2s; }
+    .about-text-custom a:hover { border-bottom-color: var(--accent); }
+    .edu-row { display: flex; gap: 2rem; flex-wrap: wrap; }
+    .edu-card { flex: 1; border: 1px solid var(--card-border); padding: 1.8rem; transition: 0.2s; cursor: pointer; }
+    .edu-card:hover { border-color: var(--accent); background: var(--card-bg-hover); transform: translateY(-3px); }
+    .edu-institution { font-size: 1.5rem; font-weight: 700; color: var(--accent); margin-bottom: 0.5rem; background: transparent; display: inline-block; padding-bottom: 2px; border-bottom: 1px solid var(--border-light); }
+    body.dark .edu-institution { color: #e07a79; }
+    .edu-degree { font-size: 0.9rem; color: var(--text-secondary); margin: 0.5rem 0; }
+    .edu-note { font-size: 0.85rem; }
+    .achievements-list { display: flex; flex-direction: column; gap: 1.5rem; }
+    .achieve-item { display: flex; gap: 1.5rem; align-items: flex-start; opacity: 0; transform: translateX(20px); transition: 0.4s; cursor: pointer; }
+    .achieve-item.visible { opacity: 1; transform: translateX(0); }
+    .achieve-number { font-size: 2.8rem; font-weight: 700; color: var(--accent); line-height: 1; min-width: 70px; }
+    .achieve-text { font-size: 1rem; padding-top: 0.5rem; }
+    .footer { border-top: 1px solid var(--border-light); padding: 2rem; text-align: center; margin-top: 2rem; color: var(--text-secondary); font-size: 0.85rem; }
+    .hidden { display: none; }
+    .nav-hamburger { display: none; flex-direction: column; justify-content: center; gap: 5px; width: 40px; height: 40px; background: none; border: none; cursor: pointer; padding: 4px; z-index: 200; flex-shrink: 0; }
+    .nav-hamburger span { display: block; height: 2px; width: 100%; background: var(--primary-deep); border-radius: 2px; transition: transform 0.3s ease, opacity 0.3s ease; transform-origin: center; }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; width: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .mobile-nav-overlay { display: none; position: fixed; inset: 0; background: var(--bg); z-index: 150; flex-direction: column; align-items: center; justify-content: center; gap: 2rem; opacity: 0; transition: opacity 0.25s ease; }
+    .mobile-nav-overlay.open { opacity: 1; }
+    /* Portrait 3D tilt scene */
+    .portrait-scene {
+      position: relative;
+      display: inline-block;
+      perspective: 900px;
+    }
+    .portrait-tilt {
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.12s ease-out;
+      will-change: transform;
+      border-radius: 20px;
+    }
+    .portrait-tilt::after {
+      content: '';
+      position: absolute;
+      inset: -3px;
+      border-radius: 23px;
+      border: 2.5px solid rgba(249,115,22,0.6);
+      opacity: 0;
+      pointer-events: none;
+      z-index: 3;
+    }
+    .portrait-tilt.pulsing::after {
+      animation: portraitRipple 0.55s ease-out forwards;
+    }
+    @keyframes portraitRipple {
+      0%   { opacity: 0.85; transform: scale(1); }
+      100% { opacity: 0;    transform: scale(1.13); }
+    }
+    /* Liquid glass contact bubbles */
+    .portrait-bubble {
+      position: absolute;
+      top: 50%;
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.45);
+      padding: 0;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 15;
+      /* Light mode: deep teal base so it pops against white background */
+      background:
+        radial-gradient(circle at 36% 32%, rgba(255,255,255,0.48) 0%, rgba(255,255,255,0.1) 50%, transparent 100%),
+        rgba(24,62,75,0.84);
+      backdrop-filter: blur(22px) saturate(190%);
+      -webkit-backdrop-filter: blur(22px) saturate(190%);
+      box-shadow:
+        0 10px 30px rgba(15,44,51,0.32),
+        inset 0 1.5px 0 rgba(255,255,255,0.58),
+        inset 0 -1.5px 0 rgba(0,0,0,0.14);
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-50%) scale(0.25);
+      transition:
+        opacity 0.3s ease,
+        transform 0.48s cubic-bezier(0.34, 1.56, 0.64, 1),
+        box-shadow 0.2s ease;
+    }
+    /* Dark mode: frosted glass is naturally visible against dark backgrounds */
+    body.dark .portrait-bubble {
+      background:
+        radial-gradient(circle at 36% 32%, rgba(255,255,255,0.32) 0%, rgba(255,255,255,0.05) 50%, transparent 100%),
+        rgba(255,255,255,0.11);
+      border: 1px solid rgba(255,255,255,0.28);
+      box-shadow:
+        0 10px 30px rgba(0,0,0,0.32),
+        inset 0 1.5px 0 rgba(255,255,255,0.5),
+        inset 0 -1.5px 0 rgba(0,0,0,0.1);
+    }
+    .portrait-bubble.visible {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(-50%) scale(1);
+    }
+    .portrait-bubble:hover {
+      transform: translateY(-50%) scale(1.1) !important;
+      box-shadow:
+        0 14px 36px rgba(15,44,51,0.4),
+        inset 0 1.5px 0 rgba(255,255,255,0.7),
+        inset 0 -1.5px 0 rgba(0,0,0,0.14);
+    }
+    body.dark .portrait-bubble:hover {
+      box-shadow:
+        0 14px 36px rgba(0,0,0,0.36),
+        inset 0 1.5px 0 rgba(255,255,255,0.6),
+        inset 0 -1.5px 0 rgba(0,0,0,0.12);
+    }
+    .portrait-bubble svg { display: block; }
+    .portrait-bubble-left  { left: 16px; }
+    .portrait-bubble-right { right: 16px; }
+    /* Go to top button */
+    .go-to-top {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: white;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+      opacity: 0;
+      transform: translateY(16px) scale(0.8);
+      transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.34,1.56,0.64,1), background 0.2s;
+      pointer-events: none;
+      box-shadow: 0 4px 18px rgba(215,74,73,0.38);
+    }
+    .go-to-top.visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      pointer-events: auto;
+    }
+    .go-to-top:hover {
+      background: var(--primary-deep);
+      transform: translateY(-3px) scale(1.06) !important;
+    }
+    @media (max-width: 900px) { .projects-grid, .blog-grid { grid-template-columns: 1fr 1fr; } .fun-grid { grid-template-columns: repeat(2, 1fr); } .hero { flex-direction: column-reverse; text-align: center; } .edu-row { flex-direction: column; } }
+    @media (max-width: 640px) { * { cursor: auto !important; } .custom-cursor { display: none !important; } .nav-links { display: none; } .nav-hamburger { display: flex; } .projects-grid, .blog-grid { grid-template-columns: 1fr; } .fun-grid { grid-template-columns: 1fr; } .hero-portrait { width: 180px; } .detail-nav { font-size: 1.8rem; width: 40px; } .detail-nav.prev { left: 0.5rem; } .detail-nav.next { right: 0.5rem; } .close-detail { top: 1rem; right: 1rem; } .detail-title { font-size: 2rem; } }
+  </style>
+</head>
+<body>
+<div class="custom-cursor" id="customCursor"><svg viewBox="0 0 100 100" fill="none" style="width:100%;height:100%;display:block;"><circle id="cursorCircle" cx="50" cy="50" r="46"/></svg></div>
+<div class="interstitial-overlay" id="interstitialOverlay"><div class="interstitial-text">When I'm not securing systems, I am...</div></div>
+
+<header class="site-header" id="siteHeader"><div class="nav-inner"><a href="#" class="logo" id="homeLink">Ojas Verma</a><ul class="nav-links"><li><a class="nav-link" data-section="about">About</a></li><li><a class="nav-link" data-section="experience">Experience</a></li><li><a class="nav-link" data-section="projects">Projects</a></li><li><a class="nav-link" data-section="education">Education</a></li><li><a class="nav-link" data-section="achievements">Achievements</a></li><li><a class="nav-link" data-section="blog">Blog</a></li><li><a class="nav-link" data-section="contact">Contact Me</a></li><li><a class="nav-link rainbow" id="funTabLink">I'm Creative</a></li><li><button class="theme-toggle" id="darkModeToggle"><span class="sun-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/></svg></span><span class="moon-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></span></button></li></ul><button class="nav-hamburger" id="navHamburger"><span></span><span></span><span></span></button></div></header>
+<div class="mobile-nav-overlay" id="mobileNavOverlay"><a class="nav-link" data-section="about">About</a><a class="nav-link" data-section="experience">Experience</a><a class="nav-link" data-section="projects">Projects</a><a class="nav-link" data-section="education">Education</a><a class="nav-link" data-section="achievements">Achievements</a><a class="nav-link" data-section="blog">Blog</a><a class="nav-link" data-section="contact">Contact Me</a><a class="nav-link rainbow" id="mobFunTabLink">I'm Creative</a><button class="theme-toggle" id="darkModeToggleMob"><span class="sun-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/></svg></span><span class="moon-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></span></button></div>
+
+<main id="app">
+  <div id="homepage">
+    <section class="hero container"><div class="hero-content"><h1 class="hero-name">Hi, I'm <span class="underline-reveal" id="nameUnderline">Ojas Verma</span></h1><div class="hero-tagline">ISO27001 LA · MBA (IT Business Management) · GRC Analyst</div><div class="scroll-indicator"><span>Scroll</span><span class="bounce" id="scrollArrow">↓</span></div></div><div class="hero-image-wrapper"><div class="portrait-scene" id="portraitScene"><div class="portrait-tilt" id="portraitTilt"><img class="hero-portrait" id="heroPortrait" src="" alt="Ojas Verma"><button class="portrait-bubble portrait-bubble-left" id="bubbleLeft" title="Send an email"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.88)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="26" height="26"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></button><button class="portrait-bubble portrait-bubble-right" id="bubbleRight" title="LinkedIn"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.88)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="26" height="26"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></button></div></div></div></section>
+
+    <section id="about" class="container" style="padding: 4rem 0;">
+      <div class="section-label">ABOUT</div>
+      <div class="section-heading">GRC & Security Analyst</div>
+      <div class="about-text-custom">
+        <p>Hi, I'm Ojas Verma! I am a <a href="https://maps.google.com/?q=Pune" target="_blank" rel="noopener noreferrer">Pune-based</a> GRC Security Analyst with a passion for problem-solving and critical thinking.</p>
+        <p>Driven by a deep interest in cybersecurity and risk management, I recently completed my MBA from the <a href="https://www.scit.edu" target="_blank" rel="noopener noreferrer">Symbiosis Centre for Information Technology (SCIT)</a>. To further solidify my expertise, I earned my ISO 27001:2022 Lead Auditor certification from Intertek. In my current role, I focus on helping organizations navigate complex security landscapes, manage risk, and maintain robust compliance frameworks.</p>
+        <p>Outside of the professional sphere, I am a multi-disciplinary enthusiast. You can usually find me brainstorming concepts and bringing them to life with acrylic paints, staying ahead of tech trends and world news, singing while playing the ukulele, or unwinding with an impactful movie and a good game of sports.</p>
+      </div>
+    </section>
+
+    <section id="experience" class="container" style="padding: 4rem 0;">
+      <div class="section-label">EXPERIENCE</div>
+      <div class="section-heading">Work history</div>
+      <div class="timeline">
+        <div class="exp-item">
+          <div class="exp-title">Security Analyst (GRC) · <a href="https://www.linkedin.com/company/centralogic/posts/?feedView=all" target="_blank" rel="noopener noreferrer">Centralogic Consultancy Pvt. Ltd.</a>, Pune</div>
+          <div class="exp-meta">March 2026 – Present</div>
+          <ul class="exp-desc-list">
+            <li>Manage and maintain the corporate Risk Register, identifying critical vulnerabilities and implementing strategic controls to mitigate high-impact organizational risks.</li>
+            <li>Drive organizational readiness and adherence to SOC2 and ISO 27001 standards by mapping internal controls to global compliance requirements.</li>
+            <li>Author and refine information security policies and procedures, ensuring all documentation aligns with evolving regulatory landscapes and internal security posture.</li>
+            <li>Monitor the effectiveness of implemented security controls, providing data-driven insights to ensure continuous alignment with the company's risk appetite.</li>
+          </ul>
+        </div>
+        <div class="exp-item">
+          <div class="exp-title">Customer Advocate · <a href="https://www.linkedin.com/company/celoxis/posts/?feedView=all" target="_blank" rel="noopener noreferrer">Celoxis Technologies Pvt. Ltd.</a>, Pune</div>
+          <div class="exp-meta">Jul 2023 – May 2024</div>
+          <ul class="exp-desc-list">
+            <li>Acted as a primary technical point of contact for 100+ global prospects and customers, translating complex business requirements into tailored SaaS configurations to drive product adoption.</li>
+            <li>Resolved intricate user challenges and functional roadblocks daily, maintaining high client satisfaction through proactive troubleshooting and clear communication.</li>
+            <li>Architected seamless cross-platform workflows by creating no-code integrations between the core SaaS tool and third-party applications like Jira, Trello, and Monday.com.</li>
+            <li>Collaborated with the marketing team to design and deploy high-engagement product content, effectively communicating technical features to a non-technical audience.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="container" style="padding: 4rem 0;"><div class="section-label">RESEARCH & PROJECTS</div><div class="section-heading">Academic & GRC work</div><div class="projects-grid" id="projectsGrid"></div></section>
+
+    <section id="education" class="container" style="padding: 4rem 0;">
+      <div class="section-label">EDUCATION</div>
+      <div class="section-heading">Degrees</div>
+      <div class="edu-row">
+        <div class="edu-card"><div class="edu-institution">Symbiosis Centre for Information Technology, Pune</div><div class="edu-degree">MBA (Information Technology Business Management) · 2026 · 67.50%</div><div class="edu-note">Internship Committee Member</div></div>
+        <div class="edu-card"><div class="edu-institution">Smt. Kashibai Navale College of Engineering, Pune</div><div class="edu-degree">B.E. Computer Science · 2023 · 75.56%</div><div class="edu-note">Savitribai Phule Pune University</div></div>
+      </div>
+    </section>
+
+    <section id="achievements" class="container" style="padding: 4rem 0;">
+      <div class="section-label">CERTIFICATIONS & HONORS</div>
+      <div class="section-heading">Recognition</div>
+      <div class="achievements-list">
+        <div class="achieve-item"><div class="achieve-number">01</div><div class="achieve-text">IRCA certified ISMS ISO/IEC 27001:2022 Lead Auditor (Intertek, Pune, 2025)</div></div>
+        <div class="achieve-item"><div class="achieve-number">02</div><div class="achieve-text">Member of Internship Committee, Symbiosis Centre for Information Technology, Pune (2024)</div></div>
+        <div class="achieve-item"><div class="achieve-number">03</div><div class="achieve-text">Volunteer teacher for underprivileged children – U&I Trust, Pune</div></div>
+      </div>
+    </section>
+
+    <section id="blog" class="container" style="padding: 4rem 0;">
+      <div class="section-label">INSIGHTS & WRITINGS</div>
+      <div class="section-heading">Blog</div>
+      <div class="blog-grid" id="blogGrid"></div>
+    </section>
+
+    <section id="contact" class="container" style="padding: 4rem 0;">
+      <div class="section-label">GET IN TOUCH</div>
+      <div class="section-heading">Contact Me</div>
+      <div class="contact-grid" id="contactGrid"></div>
+    </section>
+  </div>
+
+  <div id="detailWrapper" class="detail-wrapper">
+    <button class="close-detail" id="closeDetailBtn">×</button>
+    <button class="detail-nav prev" id="prevProjectBtn">‹</button>
+    <button class="detail-nav next" id="nextProjectBtn">›</button>
+    <div id="detailContentContainer" class="detail-container detail-fade"></div>
+  </div>
+  <div id="funView" class="hidden"></div>
+  <div id="activityDetailView" class="hidden"></div>
+</main>
+<footer class="footer"><div>© 2026 Ojas Verma – ISO27001 LA | GRC & Business Strategy</div></footer>
+<button class="go-to-top" id="goToTop" title="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M18 15l-6-6-6 6"/></svg></button>
+
+<script>
+  // IMAGE MANAGEMENT SYSTEM
+  const IMAGE_MANIFEST = {
+    heroPortrait: "ojas.png",
+    projectHeader: {
+      "GRC and Risk management": "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800&h=500&fit=crop",
+      "Dark Patterns & Consumer Trust": "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800&h=500&fit=crop",
+      "Cybersecurity Maturity Assessment (GRC)": "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800&h=500&fit=crop",
+      "Information Risk Management (Amazon Prime Video)": "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800&h=500&fit=crop"
+    },
+    projectInline: {
+      "GRC and Risk management": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=400&fit=crop",
+      "Dark Patterns & Consumer Trust": "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?w=800&h=400&fit=crop",
+      "Cybersecurity Maturity Assessment (GRC)": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=400&fit=crop",
+      "Information Risk Management (Amazon Prime Video)": "https://images.unsplash.com/photo-1614064641938-3bbee52942c7?w=800&h=400&fit=crop"
+    },
+    funActivities: {
+      "Motion Graphics": "https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=800&h=600&fit=crop",
+      "Acrylic Painting": "https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=800&h=600&fit=crop",
+      "Ukulele and Production": "https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=800&h=600&fit=crop"
+    }
+  };
+
+  function getImageSrc(category, key) {
+    if (category === 'projectHeader') return IMAGE_MANIFEST.projectHeader[key] || IMAGE_MANIFEST.projectHeader["GRC and Risk management"];
+    if (category === 'projectInline') return IMAGE_MANIFEST.projectInline[key] || IMAGE_MANIFEST.projectInline["GRC and Risk management"];
+    if (category === 'funActivity') return IMAGE_MANIFEST.funActivities[key] || IMAGE_MANIFEST.funActivities["Motion Graphics"];
+    return "";
+  }
+
+  const projectsData = [
+    { id: "grc-risk", title: "GRC and Risk management", tech: "ISO27001, SOC2, Risk Register", desc: "Corporate risk governance, policy architecture, and continuous compliance monitoring.", institution: "Centralogic Consultancy Pvt. Ltd.", detail: { date: "2026", content: `<p>In this domain, I take full ownership of the corporate Risk Register, serving as the central mechanism for identifying critical institutional vulnerabilities. By evaluating threat vectors against organizational dependencies, I design and implement strategic, high-impact controls. This proactive governance systematically shifts the corporate posture from reactive troubleshooting to intentional, predictive risk mitigation.</p><p>A key focus is driving end-to-end organizational readiness and rigorous adherence to international standards, specifically SOC2 and ISO 27001. I achieve this by seamlessly mapping internal controls to global compliance requirements and auditing procedural evidence. Alongside this framework alignment, I author, review, and refine comprehensive information security policies. This ensures that all corporate documentation remains dynamically synchronized with evolving regulatory landscapes and the organization's internal security objectives.</p><img class="inline-image" src="${getImageSrc('projectInline', 'GRC and Risk management')}" alt="compliance"><p>To maintain a resilient defense infrastructure, I establish continuous monitoring systems that audit the real-time effectiveness of implemented security safeguards. By translating complex technical metrics into data-driven insights, I evaluate ongoing operational compliance. This comprehensive oversight ensures that daily operations, data security protocols, and third-party dependencies remain explicitly aligned with the executive board's defined risk appetite, safeguarding both brand equity and long-term operational resilience.</p>` } },
+    { id: "dark-patterns", title: "Dark Patterns & Consumer Trust", tech: "MBA Dissertation, PLS-SEM, UX Ethics", desc: "Research on manipulative UI/UX design impact on brand loyalty in Indian Q-commerce.", institution: "Symbiosis Centre for Information Technology", detail: { date: "2025", content: `<p>This research dissertation investigates the systemic impact of "Dark Patterns"—deceptive user interface and experience (UI/UX) practices—within the hyper-competitive Indian Quick Commerce (Q-commerce) sector. Driven by aggressive targets like gross merchandise value (GMV) and rapid conversion rates, prominent digital platforms frequently deploy manipulative mechanics such as artificial countdown timers, hidden service fees, and friction-laden cancellation paths. The critical business importance of this study lies in addressing a severe management quandary: whether short-term conversion metrics are worth the catastrophic, long-term erosion of digital trust and brand equity. By framing digital ethics as a core determinant of sustainable financial performance, this project provides a formal analytical framework to measure the trade-off between immediate behavioural exploitation and long-term customer lifetime value (CLV).</p><p>The execution utilized a mixed-methods, convergent parallel design anchored in the Stimulus-Organism-Response (S-O-R) model. To isolate user interfaces as an independent variable, high-fidelity mockups were built to simulate an interactive grocery checkout process under two distinct states. A control group encountered a transparent, "Clean UI," while an experimental group was exposed to a "Dark UI" embedded with status quo and scarcity biases like default opt-in priority fees and false urgency alerts. Operating as a quantitative pilot study with a convenience sample (N=60) of digital natives, the project evaluated immediate psychological responses. Psychometric survey data was subsequently processed using Partial Least Squares Structural Equation Modeling (PLS-SEM) to mathematically trace the structural progression from dark pattern exposure to trust depreciation and customer churn intent.</p><img class="inline-image" src="${getImageSrc('projectInline', 'Dark Patterns & Consumer Trust')}" alt="UX research"><p>The study proved that contemporary consumers possess a high level of online persuasion knowledge, rejecting artificial urgency and identifying hidden interface tricks as overt acts of deception. While clean interfaces established a baseline of consumer goodwill, dark patterns triggered a protective transactional defense state, driving a staggering shift toward market competitors like Zepto, Blinkit, and Swiggy. To bridge this operational gap, the project synthesized an Ethical UI/UX Governance Model to replace traditional, short-sighted growth hacking loops. This new framework integrates real-time metrics—tracking perceived manipulation, customer complaints, and churn dynamics—directly into the continuous product development lifecycle. Ultimately, this project establishes that transparency serves as a robust defensive moat, demonstrating that shifting from urgency-driven interfaces to clarity-driven designs is vital for safeguarding brand integrity and ensuring relational value retention in the digital economy.</p>` } },
+    { id: "cyber-maturity", title: "Cybersecurity Maturity Assessment (GRC)", tech: "NIST CSF 2.0, 318-point checklist", desc: "Comprehensive GRC audit bridging reactive troubleshooting to proactive risk strategy.", institution: "Symbiosis Centre for Information Technology", detail: { date: "2025", content: `<p>This project involved executing a comprehensive Governance, Risk, and Compliance (GRC) security audit to evaluate and fortify an organization's digital defenses. Using a rigorous 318-point checklist across six core pillars—Govern, Identify, Protect, Detect, Respond, and Recover—the project established a transparent baseline for the organization's existing security posture. The ultimate objective was to systematically transition from reactive technical troubleshooting to an intentional, proactive business risk management strategy.</p><img class="inline-image" src="${getImageSrc('projectInline', 'Cybersecurity Maturity Assessment (GRC)')}" alt="risk assessment"><p>The evaluation involved cross-departmental collaboration (spanning IT, Compliance, Audit, and Risk Management) to map everyday operations against industry-standard cybersecurity compliance requirements. Following this baseline audit, a multi-tiered Maturity Model was developed, calculating the organization's current maturity scores for 2024 and establishing data-driven target scores for 2025.</p><p>The project successfully converted complex security vulnerabilities into a clear, actionable roadmap for leadership, bridging the gap between engineering safeguards and corporate compliance.</p>` } },
+    { id: "amazon-prime-irm", title: "Information Risk Management (Amazon Prime Video)", tech: "NIST SP 800-30, CIA Triad", desc: "Risk assessment of content storage system for Amazon Prime Video.", institution: "Symbiosis Centre for Information Technology", detail: { date: "2024", content: `<p>This project involved conducting a rigorous Information Risk Management assessment of the Content Storage System (IT System ID: STN-002) for Amazon Prime Video. Guided by the globally recognized NIST SP 800-30 framework, the objective was to safeguard critical digital assets against an evolving threat landscape within the high-stakes Media & Entertainment domain. The study systematically mapped data sensitivity—evaluating Confidentiality, Integrity, and Availability (CIA) across core datasets including user PII, production house details, and media content—to ensure an accurate, structured understanding of institutional vulnerabilities.</p><p>The execution focused on bridging theoretical cybersecurity metrics with real-world streaming operations. By establishing standardized scales for Threat Likelihood (ranging from minor motivation to highly capable threat sources) and Risk Impact Criteria (measuring potential financial losses, reputational harm, and operational disruptions), a qualitative and quantitative evaluation matrix was formed. The project evaluated 16 critical threat vectors—including digital content piracy, Distributed Denial of Service (DDoS) attacks, insecure APIs, API exploitation, and insider data leaks—calculating an overall risk determination scale to highlight where the infrastructure was most vulnerable.</p><img class="inline-image" src="${getImageSrc('projectInline', 'Information Risk Management (Amazon Prime Video)')}" alt="risk framework"><p>The assessment successfully translated technical vulnerabilities into a prioritized, actionable roadmap for infrastructure engineering and compliance teams. Every identified threat was paired with explicit, defensive recommendations—such as implementing robust Digital Rights Management (DRM) solutions, establishing Multi-Factor Authentication (MFA), enforcing strict Data Loss Prevention (DLP) protocols, and maintaining routine penetration testing. Ultimately, this project provided Amazon Prime Video's content storage ecosystem with a structured blueprint to transition from a reactive defense posture to a proactive, highly resilient, and compliant corporate risk strategy.</p>` } }
+  ];
+
+  const blogPosts = [
+    {
+      id: "blog1",
+      title: "The Farmer's Marketplace That Was Quietly Going Broke",
+      date: "MBA Case Study · AgriTech",
+      image: "https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=900&h=640&fit=crop",
+      content: `<div class="blog-stat-row"><div class="blog-stat-box"><div class="blog-stat-val">₹94 Cr</div><div class="blog-stat-label">Annual GMV</div></div><div class="blog-stat-box"><div class="blog-stat-val">₹5.64 Cr</div><div class="blog-stat-label">Revenue at 6% take</div></div><div class="blog-stat-box"><div class="blog-stat-val">18%</div><div class="blog-stat-label">Produce spoilage</div></div><div class="blog-stat-box"><div class="blog-stat-val">8 mo</div><div class="blog-stat-label">Runway left</div></div></div><div class="blog-section-kicker">The Challenge</div><div class="blog-section-title">A model built to help farmers was slowly destroying itself</div><p>TerraFarma had onboarded 12,400 farmers across Vidarbha, connected them to 280 institutional buyers, and genuinely delivered — farmers were earning 20–25% more than through the traditional mandi system. The GMV was growing. Buyer retention sat at 74%. By most startup metrics, this looked like a success story.</p><p>But the CFO's spreadsheet told a different story. At a 6% commission on ₹94 Cr GMV, TerraFarma was generating just ₹5.64 Cr in annual revenue — against a burn of ₹8.16 Cr. The gap was ₹2.52 Cr every year, and with only 8 months of runway left, the clock was ticking loudly.</p><div class="blog-section-kicker">Risk Identified</div><div class="blog-section-title">Two silent killers: a take rate priced too low, and produce rotting in transit</div><p>To break even at 6%, TerraFarma would need GMV of ₹136 Cr — a 45% jump in 8 months. The problem wasn't scale. It was pricing. An 18% spoilage rate compounded this: ₹17 Cr worth of produce was rotting before it reached buyers, costing ₹1 Cr in lost commissions annually and steadily eroding trust on both sides of the marketplace.</p><div class="blog-pull-quote">"At 6% take rate, we'd need to grow GMV by 45% in 8 months just to survive. That's not a growth problem — it's a pricing problem."</div><div class="blog-section-kicker">Business Solution</div><div class="blog-section-title">Raise the take rate. Fix the cold chain. Introduce shipment insurance.</div><p>The first move was renegotiating commission from 6% to 10%. The justification was straightforward: even at 10%, TerraFarma was still 20–30% cheaper for farmers than the mandi system. At 10% on a conservatively adjusted GMV of ₹86 Cr, revenue would hit ₹8.6 Cr — enough to survive and reinvest. Cold chain infrastructure financed through a low-interest loan (not equity) would reduce spoilage from 18% to 6%, recovering ₹1.7 Cr in annual commission with full payback under four years. The cold chain investment also became a commercial product: spoilage insurance offered to farmers as a paid add-on, generating premium income while signalling infrastructure confidence.</p><div class="blog-section-kicker">Impact</div><div class="blog-section-title">In 24 months: GMV nearly doubles, spoilage collapses, TerraFarma becomes investable</div><p>24-month projections: GMV grows to ₹176 Cr, annual revenue reaches ₹14–17 Cr at a blended 8–10% take rate, active farmers grow from 12,400 to 18,000, spoilage falls to 3–5%, and buyer repeat rate climbs to 86%. TerraFarma stops being a charity with a marketplace bolted on and becomes a genuine business — one that can raise capital on its own terms, expand from a position of strength, and continue delivering its farmer-first promise.</p>`
+    },
+    {
+      id: "blog2",
+      title: "The Meal Subscription That Was Paying Customers to Eat",
+      date: "MBA Case Study · FoodTech",
+      image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=900&h=640&fit=crop",
+      content: `<div class="blog-stat-row"><div class="blog-stat-box"><div class="blog-stat-val">8,400</div><div class="blog-stat-label">Active subscribers</div></div><div class="blog-stat-box"><div class="blog-stat-val">-₹176</div><div class="blog-stat-label">Loss per sub/month</div></div><div class="blog-stat-box"><div class="blog-stat-val">₹68</div><div class="blog-stat-label">Delivery cost/order</div></div><div class="blog-stat-box"><div class="blog-stat-val">9%</div><div class="blog-stat-label">Monthly churn</div></div></div><div class="blog-section-kicker">The Challenge</div><div class="blog-section-title">Great food, growing subscribers, and a business model that actively destroyed value</div><p>NexaBite had everything a food startup dreams of — a cult following, strong word-of-mouth, a product that genuinely improved people's eating habits. By FY2024, 8,400 subscribers across Pune were paying ₹4,200 a month for fresh, chef-curated meal boxes delivered daily.</p><p>Then the CFO ran the full unit economics, and the room went quiet. At 26 deliveries per subscriber per month at ₹68 each, delivery costs alone consumed ₹1,768 per subscriber — 42% of the entire subscription price. Add food costs, packaging, and overheads, and NexaBite was losing ₹176 on every subscriber every single month. With 8,400 subscribers, that was ₹14.8 lakh in losses every month, just from serving existing customers.</p><div class="blog-section-kicker">Risk Identified</div><div class="blog-section-title">Delivery economics that made growth dangerous — and a competitor arriving in 90 days</div><p>At ₹68 per delivery and 26 deliveries a month, NexaBite wasn't running a food business — it was running a logistics company that also made food, and losing money doing it. The Nashik expansion worsened this: lower subscriber density pushed per-delivery costs to ₹94. Every new Nashik subscriber was a larger loss than a Pune one.</p><p>The competitive risk landed simultaneously. FreshBox — a well-funded Mumbai rival — announced it was entering Pune in three months with aggressive introductory pricing of ₹3,499/month, nearly ₹700 cheaper than NexaBite's ₹4,200. With 9% monthly churn already eroding the subscriber base, the timing couldn't have been worse.</p><div class="blog-pull-quote">"We're basically running a logistics company that also makes food — and we're losing on both."</div><div class="blog-section-kicker">Business Solution</div><div class="blog-section-title">Cut delivery costs aggressively, lock in subscribers before FreshBox arrives, never match on price</div><p>Partner with an EV fleet provider at ₹45 per delivery instead of ₹68. This alone saves ₹598 per subscriber per month — turning a ₹176 loss into a ₹422 gain. Route optimisation and pin-code clustering (one rider serving 8–10 subscribers in the same building complex) compound these savings further. Nashik acquisition paused immediately until density hits a viable threshold.</p><p>Against FreshBox: don't cut price — NexaBite was already loss-making at ₹4,200. Instead, lock in existing subscribers before the competitor arrives with 12-month annual plans at a 7% discount (₹3,900/month prepaid), making those subscribers economically immune to FreshBox's introductory offer. Competitive differentiation built on what FreshBox can't quickly replicate: nutritionist-designed positioning, a kids' nutrition range creating family lock-in, and an AI meal summary feature.</p><div class="blog-section-kicker">Impact</div><div class="blog-section-title">From ₹176/month loss to ₹674/month profit — and a Series A pitch that works</div><p>After delivery cost reductions and packaging renegotiation: revenue stays at ₹4,200. Food cost remains ₹1,848. Delivery drops from ₹1,768 to ₹1,170. Packaging from ₹360 to ₹208. Overheads from ₹400 to ₹300. Total cost per subscriber: ₹3,526. Monthly profit per subscriber: ₹674. At 9,000 subscribers, NexaBite generates ₹60 lakh in monthly profit — the number a Series A investor actually needs to see.</p>`
+    },
+    {
+      id: "blog3",
+      title: "The Indian Sportswear Brand That Got Caught in the Middle",
+      date: "MBA Case Study · D2C Retail",
+      image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=900&h=640&fit=crop",
+      content: `<div class="blog-stat-row"><div class="blog-stat-box"><div class="blog-stat-val">₹118 Cr</div><div class="blog-stat-label">Annual revenue</div></div><div class="blog-stat-box"><div class="blog-stat-val">14%</div><div class="blog-stat-label">EBITDA margin</div></div><div class="blog-stat-box"><div class="blog-stat-val">52%</div><div class="blog-stat-label">Revenue via marketplace</div></div><div class="blog-stat-box"><div class="blog-stat-val">₹18 Cr</div><div class="blog-stat-label">Lost to fees annually</div></div></div><div class="blog-section-kicker">The Challenge</div><div class="blog-section-title">Squeezed from both sides, bleeding margin through the middle</div><p>Athletiq had built something real. Seven years of consistent product, a loyal following among college athletes and gym-goers, ₹118 Cr in revenue, and a 14% EBITDA margin — respectable in a category where most brands bleed money. The brand promise — "Indian-made performance gear at honest prices" — had created genuine affinity.</p><p>Then the market moved. Decathlon expanded to 110 stores across India, offering comparable quality at 20–30% lower prices. Nike and Adidas launched accessible lines targeting the ₹1,500–3,000 segment where Athletiq lived. And a VC offered ₹40 Cr to go premium — with all the obligations that come with investor capital. Founder Devraj Menon was caught between three bad options: fight Decathlon on price and lose, go premium and betray the core customer, or take the money and lose brand direction.</p><div class="blog-section-kicker">Risk Identified</div><div class="blog-section-title">A marketplace dependency destroying margin — and a brand with no long-term moat</div><p>The hidden risk was in the channel mix. Athletiq was routing 52% of revenue through marketplaces, paying 30% commission on every rupee — ₹18 Cr annually handed to Myntra and Amazon, quietly. D2C revenue at 31% of total carried no such tax. Every rupee shifted from marketplace to D2C added direct profit without selling a single extra product.</p><p>"Honest prices for Indian athletes" is a positioning that can be undercut. Decathlon had already done it. Without a differentiating moat — technology, community, sport-specific expertise — Athletiq was a brand with loyal customers and no defensible reason to stay loyal when a cheaper alternative existed.</p><div class="blog-pull-quote">"You don't beat a giant by attacking its strength. You make their strength irrelevant by owning the space they can't enter."</div><div class="blog-section-kicker">Business Solution</div><div class="blog-section-title">Three-tier brand architecture, D2C shift, and flanking Decathlon from below</div><p>Renegotiate marketplace commissions from 30% to 15–20%. A 10% shift of revenue from marketplace to D2C would add ₹1.8 Cr in annual profit with zero additional sales — the highest-return lever in the business. Against Decathlon, flank from below with "Athletiq Essentials": a budget sub-line priced 15–20% below Decathlon, capturing the budget segment without a separate brand to manage. The premium play: a cricket-specific line leveraging founder Devraj Menon's cricketing background for authentic credibility. Cricket is the one sport where Indian consumers pay a premium for Indian-made gear. The VC offer partially accepted — ₹20 Cr (not ₹40 Cr), for D2C platform development and the cricket line only, with brand direction in founder hands.</p><div class="blog-section-kicker">Impact</div><div class="blog-section-title">By 2027: a three-tier brand serving every Indian athlete, D2C as the engine</div><p>Year 1: Essentials launches, marketplace commissions renegotiated, D2C share begins growing. Year 2: AthletiqPro Cricket validated through a limited range, community-building via sponsored tournaments — the moat Decathlon's big-box model structurally cannot build. Year 3: three clear product tiers (Essentials, Core, Pro), D2C share grown from 31% to 45%, and a sports community genuinely owned by Athletiq. Target by 2027: ₹200 Cr revenue, 18% EBITDA margin, and a brand that competes on belonging — something no French sporting goods retailer can buy.</p>`
+    },
+    {
+      id: "blog4",
+      title: "The EV Fleet Startup That Bought 6,200 Vehicles and Couldn't Fill Them",
+      date: "MBA Case Study · EV Mobility",
+      image: "https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=900&h=640&fit=crop",
+      content: `<div class="blog-stat-row"><div class="blog-stat-box"><div class="blog-stat-val">6,200</div><div class="blog-stat-label">Total fleet</div></div><div class="blog-stat-box"><div class="blog-stat-val">71%</div><div class="blog-stat-label">Utilisation</div></div><div class="blog-stat-box"><div class="blog-stat-val">₹32L</div><div class="blog-stat-label">Monthly idle cost</div></div><div class="blog-stat-box"><div class="blog-stat-val">9 mo</div><div class="blog-stat-label">Runway left</div></div></div><div class="blog-section-kicker">The Challenge</div><div class="blog-section-title">Rapid fleet expansion met low utilisation, high battery costs, and a competitor with better pricing</div><p>FleetX had the right idea at the right time. India's last-mile delivery market was electrifying fast, and a B2B EV leasing company with the right fleet and the right clients could build a dominant position. The Series B capital was deployed, the fleet grew from 800 to 6,200 vehicles, and contracts were signed with quick commerce platforms and FMCG distributors across four cities.</p><p>The CFO's analysis, when it finally came, was alarming. At 71% utilisation, 1,802 vehicles sat idle — generating zero revenue while incurring ₹1,800 per month each in maintenance. That was ₹32 lakh every month in dead weight. Battery replacements were hitting at 18 months instead of the projected longer cycle — at ₹28,000 per battery, a hidden time bomb in the unit economics. Only 9 months of runway remained.</p><div class="blog-section-kicker">Risk Identified</div><div class="blog-section-title">A unit economics trap: vehicle payback takes 29 months, but the battery dies at 18</div><p>Each vehicle earned ₹7,200/month in lease revenue, against ₹1,800 in maintenance and ₹1,556 in amortised battery replacement. Contribution margin: ₹3,844/month. At ₹1.1 lakh acquisition cost, payback was 28.6 months — but the battery needed replacement at month 18. Every vehicle required a ₹28,000 reinvestment before it had paid for itself.</p><p>Simultaneously, Zypp Electric was offering leases at ₹6,400/month — ₹800 cheaper than FleetX. The two anchor clients representing 38% of the active fleet sent renewal notices asking for a 15% rate cut. Losing them would drop utilisation from 71% to 44%, well below the 84% needed to break even.</p><div class="blog-pull-quote">"We bought 6,200 vehicles. 1,800 are sitting idle. Every idle vehicle costs ₹1,800 a month and earns zero. That's ₹32 lakh walking out the door."</div><div class="blog-section-kicker">Business Solution</div><div class="blog-section-title">Counter-negotiate anchor clients, monetise idle fleet as consumer rentals, fix and raise simultaneously</div><p>Counter-offer anchor clients a 6–7% discount on a 24-month lock-in contract, paired with real new value — live GPS tracking, a fleet management dashboard, monthly analytics, and emergency SOS. This reframes the conversation from "we're cutting your rate" to "we're upgrading your contract." A 6% discount accepted saves ₹17.5L versus losing them entirely. A 24-month lock-in gives ₹6.2 Cr of revenue certainty — transformative for a Series C fundraise narrative.</p><p>The 1,802 idle vehicles are a problem hiding an opportunity. Listed on Rapido or Yulu as a supply partner — not building a new platform — FleetX could generate ₹20–30L monthly from consumer e-bike rentals within weeks, directly offsetting the ₹32L monthly idle cost without selling any assets. On fundraising: implement the lock-in and idle fleet monetisation in the first 60–90 days to generate improving metrics, then begin the Series C process in parallel. Investors fund trajectories, not destinations.</p><div class="blog-section-kicker">Impact</div><div class="blog-section-title">From a fleet crisis to a two-revenue-stream business with a fundable story</div><p>Locking anchor clients at 6% and 24 months: utilisation stabilises above 70%, monthly revenue loss contained to ₹7L instead of the catastrophic ₹90L from losing them, and FleetX gains two years of demand-side visibility for its Series C deck. Idle fleet monetisation adds ₹20–30L/month in new revenue consuming no additional capital. The consumer rental product, validated through the platform partnership, becomes the basis for a standalone D2C brand in Year 2 — a business line that didn't exist before the crisis forced the question.</p>`
+    }
+  ];
+
+  let currentProjectIndex = 0;
+  function buildProjectsGrid() {
+    const grid = document.getElementById('projectsGrid');
+    if(!grid) return;
+    grid.innerHTML = '';
+    projectsData.forEach((proj, idx) => {
+      const card = document.createElement('div');
+      card.className = 'project-card';
+      card.innerHTML = `<div class="project-title">${proj.title}</div><div class="project-tech">${proj.tech}</div><div class="project-desc">${proj.desc}</div>`;
+      card.addEventListener('click', () => openDetailView(idx));
+      grid.appendChild(card);
+    });
+  }
+
+  function buildBlogGrid() {
+    const grid = document.getElementById('blogGrid');
+    if(!grid) return;
+    grid.innerHTML = '';
+    blogPosts.forEach((post, idx) => {
+      const card = document.createElement('div');
+      card.className = 'blog-card';
+      card.innerHTML = `<img src="${post.image}" alt="${post.title}" loading="lazy"><div class="blog-card-overlay"></div><div class="blog-card-info"><div class="blog-date">${post.date}</div><div class="blog-title">${post.title}</div></div>`;
+      card.addEventListener('click', () => openBlogDetail(idx));
+      grid.appendChild(card);
+    });
+  }
+
+  function buildContactGrid() {
+    const grid = document.getElementById('contactGrid');
+    if(!grid) return;
+    grid.innerHTML = `
+      <div class="contact-card" onclick="window.location.href='mailto:ojasverma88@gmail.com'" title="Email">
+        <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+      </div>
+      <div class="contact-card" onclick="window.open('https://www.linkedin.com/in/ojas-verma-a5a7aa263/','_blank')" title="LinkedIn">
+        <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+      </div>
+    `;
+  }
+
+  function openBlogDetail(index) {
+    const post = blogPosts[index];
+    const detailHtml = `
+      <div class="detail-container">
+        <button class="close-detail" onclick="closeBlogDetail()" style="position: fixed; top: 1.8rem; right: 2rem; background: transparent; border: none; font-size: 2rem; cursor: pointer; color: var(--text-secondary); z-index: 210;">×</button>
+        <h1 class="detail-title">${post.title}</h1>
+        <div class="detail-meta">${post.date}</div>
+        <div class="detail-body">${post.content}</div>
+        <a href="#" class="back-home-fun" onclick="closeBlogDetail(); return false;">← Back to homepage</a>
+      </div>
+    `;
+    document.getElementById('homepage').classList.add('hidden');
+    document.getElementById('funView')?.classList.add('hidden');
+    document.getElementById('activityDetailView')?.classList.add('hidden');
+    detailWrapper.classList.add('visible');
+    detailContent.innerHTML = detailHtml;
+    window.scrollTo(0,0);
+    window.closeBlogDetail = function() {
+      detailWrapper.classList.remove('visible');
+      document.getElementById('homepage').classList.remove('hidden');
+    };
+  }
+
+  window.closeBlogDetail = function() {
+    detailWrapper.classList.remove('visible');
+    document.getElementById('homepage').classList.remove('hidden');
+  };
+
+  function renderProjectContent(index) {
+    const item = projectsData[index];
+    if(!item) return '';
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = item.detail.content;
+    const firstP = tempDiv.querySelector('p');
+    if(firstP && !firstP.querySelector('.dropcap')) {
+      let text = firstP.innerHTML;
+      if(text.length > 0) firstP.innerHTML = `<span class="dropcap">${text.charAt(0)}</span>${text.slice(1)}`;
+    }
+    const headerImage = getImageSrc('projectHeader', item.title);
+    return `<img class="detail-header-image" src="${headerImage}" alt="${item.title}">
+            <h1 class="detail-title">${item.title}</h1>
+            <div class="detail-meta">${item.institution} · ${item.detail.date}</div>
+            <div class="detail-body">${tempDiv.innerHTML}</div>`;
+  }
+
+  const detailWrapper = document.getElementById('detailWrapper');
+  const detailContent = document.getElementById('detailContentContainer');
+  let isTransitioning = false;
+  function fadeAndUpdate(newIndex) {
+    if(isTransitioning) return;
+    isTransitioning = true;
+    detailContent.classList.add('fade-out');
+    setTimeout(() => {
+      currentProjectIndex = newIndex;
+      detailContent.innerHTML = renderProjectContent(currentProjectIndex);
+      detailContent.classList.remove('fade-out');
+      setTimeout(() => { isTransitioning = false; }, 50);
+    }, 200);
+  }
+  function openDetailView(index) {
+    currentProjectIndex = index;
+    detailContent.innerHTML = renderProjectContent(currentProjectIndex);
+    detailContent.classList.remove('fade-out');
+    document.getElementById('homepage').classList.add('hidden');
+    document.getElementById('funView')?.classList.add('hidden');
+    document.getElementById('activityDetailView')?.classList.add('hidden');
+    detailWrapper.classList.add('visible');
+    window.scrollTo(0,0);
+  }
+  function closeDetail() { detailWrapper.classList.remove('visible'); document.getElementById('homepage').classList.remove('hidden'); }
+  function nextProject() { if(isTransitioning) return; let newIdx = currentProjectIndex + 1; if(newIdx >= projectsData.length) newIdx = 0; fadeAndUpdate(newIdx); }
+  function prevProject() { if(isTransitioning) return; let newIdx = currentProjectIndex - 1; if(newIdx < 0) newIdx = projectsData.length - 1; fadeAndUpdate(newIdx); }
+  document.getElementById('closeDetailBtn')?.addEventListener('click', closeDetail);
+  document.getElementById('prevProjectBtn')?.addEventListener('click', prevProject);
+  document.getElementById('nextProjectBtn')?.addEventListener('click', nextProject);
+  document.addEventListener('keydown', (e) => { if(detailWrapper.classList.contains('visible')) { if(e.key === 'ArrowRight') nextProject(); else if(e.key === 'ArrowLeft') prevProject(); else if(e.key === 'Escape') closeDetail(); } });
+
+  const funActivities = [
+    { id: "motion", title: "Motion Graphics", icon: "🎬", shortDesc: "Creating animated visual stories and abstract loops.", image: getImageSrc('funActivity', 'Motion Graphics'), content: `<p>I always had a thing for editing and creating content. I started with digital art in 2020 when the world was in lockdown. Slowly this hobby turned serious and I wanted to learn more. That's when I followed tutorials and started creating video edits with <a href="https://www.google.com/search?q=Adobe+After+Effects" target="_blank" rel="noopener noreferrer">Adobe After Effects</a>. Since then, I've practised continuous learning to produce better videos everytime. It's the storytelling with frames which makes a video great.</p><img class="inline-image" src="${getImageSrc('funActivity', 'Motion Graphics')}" alt="motion"><p>Motion design teaches rhythm and storytelling beyond static frames.</p>` },
+    { id: "painting", title: "Acrylic Painting", icon: "🎨", shortDesc: "Abstract and semi-abstract works focused on emotion.", image: getImageSrc('funActivity', 'Acrylic Painting'), content: `<p>Art has always been in my life. I sometimes don't even require a canvas to do art as there can be so many mediums to create meaningful art. I occasionally just sit with myself, think of concepts, match my skill level with the concept and make it happen. Everytime I walk away with an art piece which I hold close to me.</p><img class="inline-image" src="${getImageSrc('funActivity', 'Acrylic Painting')}" alt="painting"><p>Painting helps me see the world in layers of meaning.</p>` },
+    { id: "ukulele", title: "Ukulele and Production", icon: "🎹", shortDesc: "Playing ukulele, singing, and producing music.", image: getImageSrc('funActivity', 'Ukulele and Production'), content: `<p>I always wanted to sing and I just randomly bought the ukulele to learn an instrument. I put in several hours watching youtube tutorials and within a month I was playing my favourite song seamlessly. I am a fast learner and this skill highly helped me reap from my efforts.</p><img class="inline-image" src="${getImageSrc('funActivity', 'Ukulele and Production')}" alt="ukulele"><p>Creating art keeps my analytical mind agile and empathetic.</p>` }
+  ];
+
+  function buildFunPage() {
+    const funView = document.getElementById('funView');
+    if(funView.innerHTML === '') {
+      let cardsHtml = `<div class="fun-page container"><div class="section-label">⚡ EXTRACURRICULAR</div><div class="section-heading">Playing, Creating, Exploring</div><div class="fun-grid">`;
+      funActivities.forEach(act => { cardsHtml += `<div class="fun-card" data-activity-id="${act.id}"><div class="fun-icon">${act.icon}</div><div class="fun-card-title">${act.title}</div><div class="fun-card-desc">${act.shortDesc}</div></div>`; });
+      cardsHtml += `</div><a href="#" class="back-home-fun" id="backFromFun">← Back to home</a></div>`;
+      funView.innerHTML = cardsHtml;
+      document.getElementById('backFromFun')?.addEventListener('click', (e) => { e.preventDefault(); funView.classList.add('hidden'); document.getElementById('homepage').classList.remove('hidden'); window.scrollTo(0,0); const p = document.getElementById('heroPortrait'); if(p) { p.style.opacity = '1'; p.style.transform = 'scale(1)'; } });
+      document.querySelectorAll('.fun-card').forEach(card => { card.addEventListener('click', () => { const actId = card.getAttribute('data-activity-id'); const activity = funActivities.find(a => a.id === actId); if(activity) openActivityDetail(activity); }); });
+    }
+  }
+
+  function openActivityDetail(activity) {
+    const homepage = document.getElementById('homepage');
+    const funView = document.getElementById('funView');
+    const activityDetail = document.getElementById('activityDetailView');
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = activity.content;
+    const firstP = tempDiv.querySelector('p');
+    if(firstP && !firstP.querySelector('.dropcap')) {
+      let text = firstP.innerHTML;
+      if(text.length > 0) firstP.innerHTML = `<span class="dropcap">${text.charAt(0)}</span>${text.slice(1)}`;
+    }
+    activityDetail.innerHTML = `<div class="activity-detail-container"><img class="activity-header-image" src="${activity.image}" alt="${activity.title}"><h1 class="activity-title">${activity.title}</h1><div class="activity-meta">For Fun · Creative Practice</div><div class="activity-body">${tempDiv.innerHTML}</div><a href="#" class="back-home-fun" id="backToFun">← Back to For Fun</a></div>`;
+    homepage.classList.add('hidden');
+    funView.classList.add('hidden');
+    activityDetail.classList.remove('hidden');
+    window.scrollTo(0,0);
+    document.getElementById('backToFun')?.addEventListener('click', (e) => { e.preventDefault(); activityDetail.classList.add('hidden'); funView.classList.remove('hidden'); window.scrollTo(0,0); });
+  }
+
+  const funTabLink = document.getElementById('funTabLink');
+  const interstitial = document.getElementById('interstitialOverlay');
+  const homepageDiv = document.getElementById('homepage');
+  const funViewDiv = document.getElementById('funView');
+
+  function showInterstitialAndNavigate() {
+    interstitial.classList.remove('active', 'exit');
+    interstitial.style.visibility = 'visible';
+    void interstitial.offsetWidth;
+    interstitial.classList.add('active');
+    setTimeout(() => {
+      buildFunPage();
+      homepageDiv.classList.add('hidden');
+      funViewDiv.classList.remove('hidden');
+      window.scrollTo(0,0);
+      interstitial.classList.add('exit');
+      setTimeout(() => {
+        interstitial.classList.remove('active', 'exit');
+        interstitial.style.visibility = 'hidden';
+      }, 620);
+    }, 2000);
+  }
+
+  funTabLink.addEventListener('click', (e) => {
+    e.preventDefault();
+    showInterstitialAndNavigate();
+  });
+
+  document.getElementById('homeLink')?.addEventListener('click', (e) => { e.preventDefault(); homepageDiv.classList.remove('hidden'); funViewDiv.classList.add('hidden'); document.getElementById('activityDetailView').classList.add('hidden'); detailWrapper.classList.remove('visible'); window.scrollTo(0,0); const p = document.getElementById('heroPortrait'); if(p) { p.style.opacity = '1'; p.style.transform = 'scale(1)'; } });
+
+  const navLinks = document.querySelectorAll('.nav-link[data-section]'); function flickerText(link) { link.classList.remove('flicker-text'); void link.offsetWidth; link.classList.add('flicker-text'); setTimeout(() => link.classList.remove('flicker-text'), 450); } navLinks.forEach(link => { link.addEventListener('click', (e) => { e.preventDefault(); const sectionId = link.getAttribute('data-section'); if(!homepageDiv.classList.contains('hidden')) { flickerText(link); document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' }); } else { document.getElementById('homeLink').click(); setTimeout(() => { document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' }); flickerText(link); }, 150); } }); });
+  const darkToggle = document.getElementById('darkModeToggle'); darkToggle.addEventListener('click', () => { document.body.classList.toggle('dark'); localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light'); }); if(localStorage.getItem('theme') === 'dark') document.body.classList.add('dark');
+  const portrait = document.getElementById('heroPortrait');
+  if(portrait) portrait.src = IMAGE_MANIFEST.heroPortrait;
+  window.addEventListener('scroll', () => { if(portrait && homepageDiv.classList.contains('hidden') === false) { let progress = Math.min(1, window.scrollY / 400); portrait.style.opacity = 1 - progress * 0.7; portrait.style.transform = `scale(${1 - progress * 0.08})`; } const header = document.getElementById('siteHeader'); if(window.scrollY > 50) header.classList.add('scrolled'); else header.classList.remove('scrolled'); });
+  setTimeout(() => { if(portrait) portrait.classList.add('reveal-image'); }, 100);
+
+  // Portrait 3D tilt + contact bubbles
+  (function() {
+    const scene = document.getElementById('portraitScene');
+    const tilt  = document.getElementById('portraitTilt');
+    const bL    = document.getElementById('bubbleLeft');
+    const bR    = document.getElementById('bubbleRight');
+    if (!scene || !tilt) return;
+    let hideTimer;
+
+    scene.addEventListener('mousemove', (e) => {
+      const r  = scene.getBoundingClientRect();
+      const nx = ((e.clientX - r.left) / r.width  - 0.5) * 2;  // -1..1
+      const ny = ((e.clientY - r.top)  / r.height - 0.5) * 2;  // -1..1
+      const rx = -ny * 11;
+      const ry =  nx * 15;
+      tilt.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg)`;
+      if (portrait) {
+        const sx = nx * 16, sy = ny * 12 + 22;
+        portrait.style.boxShadow = [
+          `${sx*0.2}px ${sy*0.1}px 0 4px rgba(249,115,22,0.18)`,
+          `${sx*0.55}px ${sy*0.45}px 58px rgba(15,44,51,0.22)`,
+          `${sx*0.3}px ${sy*0.25}px 22px rgba(249,115,22,0.14)`
+        ].join(',');
+      }
+    });
+
+    scene.addEventListener('mouseleave', () => {
+      tilt.style.transform = 'rotateX(0deg) rotateY(0deg)';
+      if (portrait) portrait.style.boxShadow = '';
+      hideBubbles();
+    });
+
+    scene.addEventListener('click', (e) => {
+      e.stopPropagation();
+      tilt.classList.remove('pulsing');
+      void tilt.offsetWidth;
+      tilt.classList.add('pulsing');
+      setTimeout(() => tilt.classList.remove('pulsing'), 560);
+      showBubbles();
+    });
+
+    bL && bL.addEventListener('click', (e) => {
+      e.stopPropagation();
+      window.location.href = 'mailto:ojasverma88@gmail.com';
+    });
+    bR && bR.addEventListener('click', (e) => {
+      e.stopPropagation();
+      window.open('https://www.linkedin.com/in/ojas-verma-a5a7aa263/', '_blank');
+    });
+
+    function showBubbles() {
+      bL && bL.classList.add('visible');
+      bR && bR.classList.add('visible');
+      clearTimeout(hideTimer);
+      hideTimer = setTimeout(hideBubbles, 5000);
+    }
+    function hideBubbles() {
+      bL && bL.classList.remove('visible');
+      bR && bR.classList.remove('visible');
+      clearTimeout(hideTimer);
+    }
+  })();
+
+  // Go to top button
+  const goToTopBtn = document.getElementById('goToTop');
+  window.addEventListener('scroll', () => {
+    if (goToTopBtn) {
+      goToTopBtn.classList.toggle('visible', window.scrollY > 600);
+    }
+  });
+
+  let lastScrollYcursor = window.scrollY;
+  let scrollTimeoutCursor;
+  const cursorEl = document.getElementById('customCursor');
+  window.addEventListener('scroll', () => {
+    const currentScroll = window.scrollY;
+    const direction = currentScroll > lastScrollYcursor ? 1 : -1;
+    lastScrollYcursor = currentScroll;
+    if (direction === 1) {
+      cursorEl.classList.add('scroll-active');
+      cursorEl.classList.remove('scroll-up');
+    } else {
+      cursorEl.classList.add('scroll-up');
+      cursorEl.classList.remove('scroll-active');
+    }
+    clearTimeout(scrollTimeoutCursor);
+    scrollTimeoutCursor = setTimeout(() => {
+      cursorEl.classList.remove('scroll-active', 'scroll-up');
+    }, 200);
+  });
+
+  const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.2 }); document.querySelectorAll('.exp-item, .achieve-item').forEach(el => observer.observe(el));
+  document.getElementById('scrollArrow')?.addEventListener('click', ()=> document.getElementById('about')?.scrollIntoView({behavior:'smooth'}));
+  const hamburger = document.getElementById('navHamburger'); const mobileOverlay = document.getElementById('mobileNavOverlay'); function openMobileNav() { mobileOverlay.style.display = 'flex'; requestAnimationFrame(() => mobileOverlay.classList.add('open')); hamburger.classList.add('open'); document.body.style.overflow = 'hidden'; } function closeMobileNav() { mobileOverlay.classList.remove('open'); hamburger.classList.remove('open'); document.body.style.overflow = ''; setTimeout(() => { if (!mobileOverlay.classList.contains('open')) mobileOverlay.style.display = 'none'; }, 260); } hamburger.addEventListener('click', () => { hamburger.classList.contains('open') ? closeMobileNav() : openMobileNav(); }); document.querySelectorAll('#mobileNavOverlay .nav-link[data-section]').forEach(link => { link.addEventListener('click', (e) => { e.preventDefault(); const sectionId = link.getAttribute('data-section'); closeMobileNav(); if (!homepageDiv.classList.contains('hidden')) { setTimeout(() => document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' }), 280); } else { document.getElementById('homeLink').click(); setTimeout(() => document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' }), 420); } }); }); document.getElementById('mobFunTabLink')?.addEventListener('click', (e) => { e.preventDefault(); closeMobileNav(); setTimeout(() => showInterstitialAndNavigate(), 280); }); const darkToggleMob = document.getElementById('darkModeToggleMob'); darkToggleMob?.addEventListener('click', () => { document.body.classList.toggle('dark'); localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light'); });
+  buildProjectsGrid();
+  buildBlogGrid();
+  buildContactGrid();
+  function addCursorListeners() { if(window.innerWidth>640){ document.querySelectorAll('a, button, .project-card, .fun-card, .blog-card, .contact-card, .nav-link, .theme-toggle, .close-detail, .detail-nav').forEach(el => { if(!el.hasCursorListener) { el.hasCursorListener = true; el.addEventListener('mouseenter', () => cursor.classList.add('hover-active')); el.addEventListener('mouseleave', () => cursor.classList.remove('hover-active')); el.addEventListener('click', () => { cursor.classList.add('click-active'); setTimeout(() => cursor.classList.remove('click-active'), 250); }); } }); } } const cursor = document.getElementById('customCursor'); document.addEventListener('mousemove', (e) => { if(window.innerWidth>640){ cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px'; } }); addCursorListeners(); new MutationObserver(() => addCursorListeners()).observe(document.body, { childList: true, subtree: true });
+</script>
+</body>
+</html>

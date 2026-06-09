@@ -200,6 +200,10 @@
     /* Activity Detail */
     .activity-detail-container { max-width: 880px; margin: 6rem auto 4rem; padding: 0 1.5rem; }
     .activity-header-image { width: 100%; max-height: 480px; object-fit: cover; margin-bottom: 2rem; border-radius: 8px; }
+    .activity-header-video { width: 100%; max-height: 480px; object-fit: cover; margin-bottom: 2rem; border-radius: 8px; display: block; }
+    .painting-gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 1.75rem 0; }
+    .painting-gallery img { width: 100%; height: auto; border-radius: 8px; display: block; }
+    @media (max-width: 640px) { .painting-gallery { grid-template-columns: 1fr; } }
     .activity-title { font-size: 3.2rem; line-height: 1.2; margin: 1rem 0 0.5rem; color: var(--primary-deep); font-weight: 800; }
     .activity-meta { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; color: var(--accent); margin-bottom: 2rem; border-bottom: 1px solid var(--border-light); padding-bottom: 1rem; }
     .activity-body { font-size: 1.1rem; line-height: 1.6; }
@@ -343,7 +347,25 @@
     #nameUnderline { color: #f97316; }
     .underline-reveal { background-image: linear-gradient(#f97316, #f97316); background-repeat: no-repeat; background-position: 0 100%; background-size: 0% 2px; transition: background-size 0.6s; padding-bottom: 4px; }
     .hero-tagline { font-size: 1.15rem; color: var(--muted-acc); letter-spacing: 0.3px; }
-    .scroll-indicator { margin-top: 2rem; font-size: 0.8rem; text-transform: uppercase; color: var(--muted-acc); letter-spacing: 1px; }
+    .resume-btn {
+      display: inline-flex; align-items: center; gap: 0.55rem;
+      margin-top: 1.75rem; margin-bottom: 0.25rem;
+      padding: 0.8rem 1.9rem;
+      background: var(--accent); color: #fff;
+      font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.92rem;
+      letter-spacing: 0.2px; border-radius: 10px; text-decoration: none;
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 18px rgba(215,74,73,0.28);
+      cursor: none;
+    }
+    .resume-btn:hover {
+      background: var(--primary-deep);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 26px rgba(215,74,73,0.36);
+    }
+    body.dark .resume-btn { box-shadow: 0 4px 18px rgba(224,122,121,0.22); }
+    body.dark .resume-btn:hover { background: var(--primary-mid); }
+    .scroll-indicator { margin-top: 1.5rem; font-size: 0.8rem; text-transform: uppercase; color: var(--muted-acc); letter-spacing: 1px; }
     .bounce { animation: bounce 2s infinite; display: inline-block; cursor: pointer; color: var(--accent); }
     @keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(6px)} }
     .section-label { font-size: 0.75rem; letter-spacing: 2px; color: var(--accent); margin-bottom: 0.5rem; text-transform: uppercase; font-weight: 700; }
@@ -521,7 +543,7 @@
 
 <main id="app">
   <div id="homepage">
-    <section class="hero container"><div class="hero-content"><h1 class="hero-name">Hi, I'm <span class="underline-reveal" id="nameUnderline">Ojas Verma</span></h1><div class="hero-tagline">ISO27001 LA · MBA (IT Business Management) · GRC Analyst</div><div class="scroll-indicator"><span>Scroll</span><span class="bounce" id="scrollArrow">↓</span></div></div><div class="hero-image-wrapper"><div class="portrait-scene" id="portraitScene"><div class="portrait-tilt" id="portraitTilt"><img class="hero-portrait" id="heroPortrait" src="" alt="Ojas Verma"><button class="portrait-bubble portrait-bubble-left" id="bubbleLeft" title="Send an email"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.88)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="26" height="26"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></button><button class="portrait-bubble portrait-bubble-right" id="bubbleRight" title="LinkedIn"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.88)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="26" height="26"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></button></div></div></div></section>
+    <section class="hero container"><div class="hero-content"><h1 class="hero-name">Hi, I'm <span class="underline-reveal" id="nameUnderline">Ojas Verma</span></h1><div class="hero-tagline">ISO27001 LA · MBA (IT Business Management) · GRC Analyst</div><a class="resume-btn" href="OjasVermaResumeJune.docx" download="Ojas_Verma_Resume.docx"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download Resume</a><div class="scroll-indicator"><span>Scroll</span><span class="bounce" id="scrollArrow">↓</span></div></div><div class="hero-image-wrapper"><div class="portrait-scene" id="portraitScene"><div class="portrait-tilt" id="portraitTilt"><img class="hero-portrait" id="heroPortrait" src="" alt="Ojas Verma"><button class="portrait-bubble portrait-bubble-left" id="bubbleLeft" title="Send an email"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.88)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="26" height="26"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></button><button class="portrait-bubble portrait-bubble-right" id="bubbleRight" title="LinkedIn"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.88)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="26" height="26"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></button></div></div></div></section>
 
     <section id="about" class="container" style="padding-top: 4rem; padding-bottom: 4rem;">
       <div class="section-label">ABOUT</div>
@@ -624,8 +646,8 @@
     },
     funActivities: {
       "Motion Graphics": "https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=800&h=600&fit=crop",
-      "Acrylic Painting": "https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=800&h=600&fit=crop",
-      "Ukulele and Production": "https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=800&h=600&fit=crop"
+      "Acrylic Painting": "acrylic_1.png",
+      "Ukulele and Production": "ukulele.jpg"
     }
   };
 
@@ -792,9 +814,9 @@
   document.addEventListener('keydown', (e) => { if(detailWrapper.classList.contains('visible')) { if(e.key === 'ArrowRight') nextProject(); else if(e.key === 'ArrowLeft') prevProject(); else if(e.key === 'Escape') closeDetail(); } });
 
   const funActivities = [
-    { id: "motion", title: "Motion Graphics", icon: "🎬", shortDesc: "Creating animated visual stories and abstract loops.", image: getImageSrc('funActivity', 'Motion Graphics'), content: `<p>I always had a thing for editing and creating content. I started with digital art in 2020 when the world was in lockdown. Slowly this hobby turned serious and I wanted to learn more. That's when I followed tutorials and started creating video edits with <a href="https://www.google.com/search?q=Adobe+After+Effects" target="_blank" rel="noopener noreferrer">Adobe After Effects</a>. Since then, I've practised continuous learning to produce better videos everytime. It's the storytelling with frames which makes a video great.</p><img class="inline-image" src="${getImageSrc('funActivity', 'Motion Graphics')}" alt="motion"><p>Motion design teaches rhythm and storytelling beyond static frames.</p>` },
-    { id: "painting", title: "Acrylic Painting", icon: "🎨", shortDesc: "Abstract and semi-abstract works focused on emotion.", image: getImageSrc('funActivity', 'Acrylic Painting'), content: `<p>Art has always been in my life. I sometimes don't even require a canvas to do art as there can be so many mediums to create meaningful art. I occasionally just sit with myself, think of concepts, match my skill level with the concept and make it happen. Everytime I walk away with an art piece which I hold close to me.</p><img class="inline-image" src="${getImageSrc('funActivity', 'Acrylic Painting')}" alt="painting"><p>Painting helps me see the world in layers of meaning.</p>` },
-    { id: "ukulele", title: "Ukulele and Production", icon: "🎹", shortDesc: "Playing ukulele, singing, and producing music.", image: getImageSrc('funActivity', 'Ukulele and Production'), content: `<p>I always wanted to sing and I just randomly bought the ukulele to learn an instrument. I put in several hours watching youtube tutorials and within a month I was playing my favourite song seamlessly. I am a fast learner and this skill highly helped me reap from my efforts.</p><img class="inline-image" src="${getImageSrc('funActivity', 'Ukulele and Production')}" alt="ukulele"><p>Creating art keeps my analytical mind agile and empathetic.</p>` }
+    { id: "motion", title: "Motion Graphics", icon: "🎬", shortDesc: "Creating animated visual stories and abstract loops.", image: getImageSrc('funActivity', 'Motion Graphics'), videoSrc: "Motion Graphics.mp4", content: `<p>I always had a thing for editing and creating content. I started with digital art in 2020 when the world was in lockdown. Slowly this hobby turned serious and I wanted to learn more. That's when I followed tutorials and started creating video edits with <a href="https://www.google.com/search?q=Adobe+After+Effects" target="_blank" rel="noopener noreferrer">Adobe After Effects</a>. Since then, I've practised continuous learning to produce better videos everytime. It's the storytelling with frames which makes a video great.</p><p>Motion design teaches rhythm and storytelling beyond static frames.</p>` },
+    { id: "painting", title: "Acrylic Painting", icon: "🎨", shortDesc: "Abstract and semi-abstract works focused on emotion.", image: "acrylic_1.png", content: `<p>Art has always been in my life. I sometimes don't even require a canvas to do art as there can be so many mediums to create meaningful art. I occasionally just sit with myself, think of concepts, match my skill level with the concept and make it happen. Everytime I walk away with an art piece which I hold close to me.</p><div class="painting-gallery"><img src="acrylic_1.png" alt="Acrylic painting 1"><img src="acrylic_2.png" alt="Acrylic painting 2"></div><p>Painting helps me see the world in layers of meaning.</p>` },
+    { id: "ukulele", title: "Ukulele and Production", icon: "🎹", shortDesc: "Playing ukulele, singing, and producing music.", image: "ukulele.jpg", content: `<p>I always wanted to sing and I just randomly bought the ukulele to learn an instrument. I put in several hours watching youtube tutorials and within a month I was playing my favourite song seamlessly. I am a fast learner and this skill highly helped me reap from my efforts.</p><p>Creating art keeps my analytical mind agile and empathetic.</p>` }
   ];
 
   function buildFunPage() {
@@ -820,7 +842,10 @@
       let text = firstP.innerHTML;
       if(text.length > 0) firstP.innerHTML = `<span class="dropcap">${text.charAt(0)}</span>${text.slice(1)}`;
     }
-    activityDetail.innerHTML = `<div class="activity-detail-container"><img class="activity-header-image" src="${activity.image}" alt="${activity.title}"><h1 class="activity-title">${activity.title}</h1><div class="activity-meta">For Fun · Creative Practice</div><div class="activity-body">${tempDiv.innerHTML}</div><a href="#" class="back-home-fun" id="backToFun">← Back to For Fun</a></div>`;
+    const headerMediaHtml = activity.videoSrc
+      ? `<video class="activity-header-video" src="${activity.videoSrc}" autoplay muted loop playsinline></video>`
+      : `<img class="activity-header-image" src="${activity.image}" alt="${activity.title}">`;
+    activityDetail.innerHTML = `<div class="activity-detail-container">${headerMediaHtml}<h1 class="activity-title">${activity.title}</h1><div class="activity-meta">For Fun · Creative Practice</div><div class="activity-body">${tempDiv.innerHTML}</div><a href="#" class="back-home-fun" id="backToFun">← Back to For Fun</a></div>`;
     homepage.classList.add('hidden');
     funView.classList.add('hidden');
     activityDetail.classList.remove('hidden');
